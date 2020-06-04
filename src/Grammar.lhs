@@ -64,6 +64,7 @@ Here is our mid-section datatype
 >               expect            :: Maybe Int,
 >               attributes        :: [(String,String)],
 >               attributetype     :: String,
+>               glr               :: Bool,
 >               lexer             :: Maybe (String,String),
 >               error_handler     :: Maybe String,
 >               error_sig         :: ErrorHandlerType
@@ -380,6 +381,7 @@ Get the token specs in terms of Names.
 >               error_sig         = getErrorHandlerType dirs,
 >               token_type        = getTokenType dirs,
 >               expect            = getExpect dirs,
+>               glr               = getGlr dirs,
 >               attributes        = attrs,
 >               attributetype     = attrType
 >       })

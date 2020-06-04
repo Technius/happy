@@ -35,6 +35,7 @@ The parser.
 >       spec_errorhandlertype   { TokenKW      TokSpecId_ErrorHandlerType }
 >       spec_attribute  { TokenKW      TokSpecId_Attribute }
 >       spec_attributetype      { TokenKW      TokSpecId_Attributetype }
+>       spec_glr        { TokenKW      TokSpecId_Glr }
 >       code            { TokenInfo $$ TokCodeQuote }
 >       int             { TokenNum $$  TokNum }
 >       ":"             { TokenKW      TokColon }
@@ -124,6 +125,7 @@ The parser.
 >       | spec_errorhandlertype id              { TokenErrorHandlerType $2 }
 >       | spec_attributetype code       { TokenAttributetype $2 }
 >       | spec_attribute id code        { TokenAttribute $2 $3 }
+>       | spec_glr                      { TokenGlr }
 
 > optStart :: { Maybe String }
 >       : id                            { Just $1 }

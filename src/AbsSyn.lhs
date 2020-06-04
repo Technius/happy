@@ -11,7 +11,7 @@ Here is the abstract syntax of the language we parse.
 >       getTokenType, getTokenSpec, getParserNames, getLexer,
 >       getImportedIdentity, getMonad, getError,
 >       getPrios, getPrioNames, getExpect, getErrorHandlerType,
->       getAttributes, getAttributetype,
+>       getAttributes, getAttributetype, getGlr,
 >       Rule(..), Prod(..), Term(..), Prec(..)
 >  ) where
 
@@ -78,6 +78,7 @@ generate some error messages.
 >       | TokenError    String                  -- %error
 >       | TokenAttributetype String             -- %attributetype
 >       | TokenAttribute String String          -- %attribute
+>       | TokenGlr
 
 
 #ifdef DEBUG
@@ -169,3 +170,7 @@ generate some error messages.
 >                  [t] -> Just t
 >                  []  -> Nothing
 >                  _   -> error "multiple attributetype directives"
+
+> getGlr :: [Directive t] -> Bool
+> getGlr ds
+>         = not (null [ True | TokenGlr <- ds ])

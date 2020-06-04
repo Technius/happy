@@ -116,8 +116,8 @@ Mangle the syntax into something useful.
 
 Report any unused rules and terminals
 
->       let reduction_filter | OptGLR `elem` cli = any_reduction
->                            | otherwise         = first_reduction
+>       let reduction_filter | OptGLR `elem` cli || glr g = any_reduction
+>                            | otherwise                  = first_reduction
 >           (unused_rules, unused_terminals)
 >                                 = find_redundancies reduction_filter g action
 >       in
@@ -216,7 +216,7 @@ Branch off to GLR parser production
 >                      | otherwise                = NoGhcExts
 >           debug      = OptDebugParser `elem` cli
 >       in
->       if OptGLR `elem` cli
+>       if OptGLR `elem` cli || glr g
 >       then produceGLRParser outfilename   -- specified output file name
 >                             template'     -- template files directory
 >                             action        -- action table (:: ActionTable)
